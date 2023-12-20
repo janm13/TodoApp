@@ -1,0 +1,22 @@
+<h1>Neues Todo Anlegen</h1>
+<br/>
+<div class="form-floating">
+  <input [(ngModel)]="this.label" class="form-control" id="floatingInputGrid" name="label" placeholder="name"/>
+  <label for="floatingInputGrid">Name</label>
+</div>
+<br/>
+<div class="form-floating">
+  <input [(ngModel)]="deadline" class="form-control" id="floatingDateGrid" name="deadline" type="date"/>
+  <label for="floatingDateGrid">Fällig bis</label>
+</div>
+<br/>
+<div class="form-floating">
+  <select class="form-select" id="floatingSelectGrid">
+    <option *ngFor="let categories of dataService.categories" [ngValue]="categories">
+      {{ categories.label }}
+    </option>
+  </select>
+  <label for="floatingSelectGrid">Kategorie</label>
+</div>
+<br/>
+<button (click)="create()" class="btn btn-primary" type="button">Speichern</button>

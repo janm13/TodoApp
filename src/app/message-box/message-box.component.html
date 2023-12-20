@@ -1,0 +1,4 @@
+<div *ngIf="dataService.messageBoxMessage !== undefined"
+     style="background-color: rgb(0,142,255); color: white; user-select: none; border: #4db4ff 3px solid; text-align: center; border-radius: 15px;">
+  {{ dataService.getMessageBoxMessage()! }}
+</div>

@@ -1,0 +1,40 @@
+<h1>Todo-Liste</h1>
+
+<table class="table">
+  <thead>
+  <th></th>
+  <th></th>
+  <th>ID</th>
+  <th>Bezeichnung</th>
+  <th>Fällig bis</th>
+  <th>Kategorie</th>
+  <th></th>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let todo of dataService.todoList()">
+    <tr>
+      <td><input (change)="dataService.save()" [(ngModel)]="todo.done" class="btn-check" id="donecheck" type="checkbox">
+        <label class="btn btn-outline-primary" for="donecheck"><i class="bi bi-check-lg"></i></label>
+      </td>
+      <td>
+        <select (ngModelChange)="dataService.save()" [(ngModel)]="todo.priority">
+          <option [ngValue]="Priority.LOW"><i class="bi bi-circle">LOW</i></option>
+          <option [ngValue]="Priority.MEDIUM"><i class="bi bi-circle-half">MEDIUM</i></option>
+          <option [ngValue]="Priority.HIGH"><i class="bi bi-circle-fill">HIGH</i></option>
+        </select>
+      </td>
+      <td>{{ todo.id }}</td>
+      <td><input (change)="dataService.save()" [(ngModel)]="todo.label"></td>
+      <td><input (change)="dataService.save()" [(ngModel)]="todo.deadline" type="date"></td>
+      <td><select (ngModelChange)="dataService.save()" [(ngModel)]="todo.category">
+        <option *ngFor="let category of dataService.categories" [ngValue]="category">{{ category.label }}</option>
+      </select></td>
+      <td>
+        <button (click)="dataService.delete(todo)" class="btn btn-outline-danger" type="button"><i
+          class="bi bi-x-circle-fill"></i>
+        </button>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

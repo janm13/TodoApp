@@ -1,0 +1,23 @@
+<div (click)="dataService.currentCategory = undefined">
+  <b *ngIf="dataService.currentCategory === undefined; else elseBlock">
+    Alle
+  </b>
+  <ng-template #elseBlock>
+    Alle
+  </ng-template>
+</div>
+<div *ngFor="let category of dataService.categories">
+  <div (click)="dataService.currentCategory = category">
+    <b *ngIf="dataService.currentCategory == category; else elseBlock">
+      {{ category.label }}
+    </b>
+    <ng-template #elseBlock>
+      {{ category.label }}
+    </ng-template>
+  </div>
+</div>
+<div class="form-floating" style="width: fit-content">
+  <input (keyup.enter)="dataService.addCategory()" [(ngModel)]="dataService.categoryName" class="form-control"
+         id="floatingInputGrid" name="label" placeholder="name"/>
+  <label for="floatingInputGrid">Neue Kategorie</label>
+</div>
